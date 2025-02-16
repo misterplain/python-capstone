@@ -1,0 +1,50 @@
+CLASS 1 - USER (ADMIN OR NOT)
+
+class USER
+    name
+    passsword
+    isAdmin
+
+class Admin (User)
+    init (name, password, isAdmin)
+    methods
+        addItem
+        editItemName
+        editItemStock
+        editItemPrice
+        deleteItem
+        viewOrders
+        viewSelectedOrders
+
+class Customer(User)
+    init(name, password, isAdmin)
+    self
+        cart
+        previousOrders
+    methods   
+        addItemToCart
+        deleteItemFromCart
+        placeOrder
+        viewPreviousOrders
+
+Ongoing Menus
+    Login
+        Login - user name and password, if Admin it routes to Admin ongoing list
+        Login - user name and passsword, if Admin it routes to Customer ongoing list
+        Register - user name and password, defaults to Customer ongoing list, adds customer to user.csv
+    Admin
+        addItem - ask for name, stock, price, adds a UUID slug
+        editItemName - asks for UUID slug and new name
+        editItemStock - asks for UUID slug and new stock
+        editItemPrice - asks for UUID slug and new price
+        deleteItem - asks for UUID slug and confirmation
+        viewOrders - shows all orders, from newest to oldest
+        viewSelectedOrders - asks for day amount, shows from newest to oldest
+    Customer
+        Cart - always visible
+        Menu options
+            view all products
+            addItemToCart - asks for UUID slug and quantity
+            deleteItemFromCart - asks for UUID slug and confirmation
+            placeOrder - asks for confirmation, checks stock in products.csv file, confirms success
+            viewPreviousOrders - shows all orders, newest to oldest
