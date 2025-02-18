@@ -1,0 +1,7 @@
+userId,username,password,isAdmin
+4356a904,admin,admin,True
+8c2a32d6,patrik,test,False
+c7ddc9f4,killian,test,False
+8ba6365f,test,killian2,False
+a79e7cdb,dog,bone,False
+6727a0ca,cat,test,False
