@@ -3,7 +3,7 @@ from classAdmin import Admin
 from classCustomer import Customer
 
 
-current_user = Customer("id", "name", "password", False)
+current_user = Customer("id-test2", "name", "password", False)
 cart_items = []
 previous_orders = []
 
@@ -77,4 +77,6 @@ previous_orders = []
 # current_user.delete_product("products", "w")
 # current_user.list_all_products()
 # current_user.list_cart_items("products-cart")
-current_user.add_item_to_cart("products-cart", "a")
+# current_user.add_item_to_cart("products-cart", "a")
+# current_user.remove_item_from_cart("products-cart", "w")
+current_user.place_order()

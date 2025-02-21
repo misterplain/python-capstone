@@ -44,3 +44,38 @@ class ProductCart:
             "quantity": self.quantity,
             "price": self.price
         }
+    
+class Order:
+    def __init__(self,orderId, userId, datePlaced, totalPrice):
+        self.orderId = orderId
+        self.userId = userId
+        self.datePlaced = datePlaced
+        self.totalPrice = totalPrice
+    def to_dict(self):
+        """Convert User object to dictionary for CSV writing."""
+        return {
+            "orderId": self.orderId,
+            "userId": self.userId,
+            "datePlaced": self.datePlaced,
+            "totalPrice": self.totalPrice
+        }
+    
+class OrderItem:
+    def __init__(self,orderId, userId, productId, name, quantity, price):
+        self.orderId = orderId
+        self.userId = userId
+        self.productId = productId,
+        self.name = name
+        self.quantity = quantity
+        self.price = price
+
+    def to_dict(self):
+        """Convert User object to dictionary for CSV writing."""
+        return {
+            "orderId": self.orderId,
+            "userId": self.userId,
+            "productId": self.productId,
+            "name": self.name,
+            "quantity": self.quantity,
+            "price": self.price
+        }
