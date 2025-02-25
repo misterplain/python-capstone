@@ -8,13 +8,7 @@ class Admin(User):
     def __init__(self, userId, username, password, isAdmin):
         super().__init__(userId, username, password, isAdmin)
 
-    def list_all_products(self):
-        products = read_from_csv("products")
-        for product in products:
-            print(f'{product["productId"]} - ${product["price"]} - stock: {product["stock"]} - name: {product["name"]}')
-        return products
-
-    def add_new_product(self, endpoint, method):
+    def add_new_product(self):
         productId = generate_short_uuid()
         name = input("Name of product: ")
         price = input("Price of product: ")
@@ -22,11 +16,11 @@ class Admin(User):
         new_product = Product(productId, name, price, stock)
         product_dict = new_product.to_dict()
         print(product_dict)
-        write_to_csv(endpoint, product_dict, method)
+        write_to_csv("products", product_dict, "a")
 
 
 
-    def edit_product(self, endpoint, method):
+    def edit_product(self):
         products = self.list_all_products()
         product_id = input("Product id to edit: ")
         new_name = input("Name: ")
@@ -47,10 +41,10 @@ class Admin(User):
             print("productId not found within products.csv file")
             return 
         print(new_product_list)
-        write_to_csv(endpoint, new_product_list, method)
+        write_to_csv("products", new_product_list, "w")
 
 
-    def delete_product(self, endpoint, method):
+    def delete_product(self):
         products = self.list_all_products()
         product_id = input("Product id to delete: ")
         found = False
@@ -64,8 +58,7 @@ class Admin(User):
         if(found == False):
             print("productId not found within products.csv file")
             return 
-        print(new_product_list)
-        write_to_csv(endpoint, new_product_list, method)
+        write_to_csv("products", new_product_list, "w")
 
     def view_orders():
         print("view orders")
