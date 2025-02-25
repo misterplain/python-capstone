@@ -21,6 +21,7 @@ class User:
     def list_all_cart_items(self):
         all_cart_items = read_from_csv("products-cart")
         return all_cart_items
+    
     def list_user_cart(self):
         all_cart_items = read_from_csv("products-cart")
         user_cart_items = []

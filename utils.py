@@ -1,9 +1,13 @@
 import csv
 import os
 from config import endpoint_dict, generate_short_uuid
+# from models import User
+# from classAdmin import Admin
+# from classCustomer import Customer
 
 
 def get_admin_class():
+
     from classAdmin import Admin
     return Admin
 
@@ -61,7 +65,6 @@ def register():
     #UNIQUE USERNAME
     while (True):
         users = read_from_csv("users")
-        print(users)
         username = input("Username: ").strip()
         for item in users:
             if item["username"] == username:
@@ -81,21 +84,19 @@ def register():
         print("admin created")
         Class = get_admin_class()
         new_user = Class(userId, username, password, registerAdmin)
-        print(new_user.userId)
     else:
         registerAdmin = False
         print("customer created")
         Class = get_customer_class()
         new_user = Class(userId, username, password, registerAdmin)
 
-    users.append(new_user.to_dict())
-    write_to_csv("users", users)
-    print(new_user)
-    return new_user
+    new_user_dict = new_user.to_dict()
+    write_to_csv("users", new_user_dict, "a")
+    return new_user_dict
 
 def login():
     #READ FROM CSV FILE
-    users = read_from_csv("users.csv")
+    users = read_from_csv("users")
     #GET INPUT AND 
     username = input("Username: ").strip()
     password = input("Password: ").strip()
@@ -106,13 +107,20 @@ def login():
             if user["username"] == username:
                 if user["password"] == password:
                     print("Login successful!")
+                    print("utils current user")
+                    print(user)
                     #RETURN AS DICTIONARY
-                    return User(
-                        user["userId"],
-                        user["username"],
-                        user["password"],
-                        user["isAdmin"]
-                    )
+                    if(user["isAdmin"] == "True"):
+                        Class = get_admin_class()
+                        new_user = Class(user["userId"], user["username"], user["password"], True)
+                        new_user_dict = new_user.to_dict()
+                        return new_user_dict
+                        
+                    else:
+                        Class = get_customer_class()
+                        new_user = Class(user["userId"], user["username"], user["password"], False)
+                        new_user_dict = new_user.to_dict()
+                        return new_user_dict
                 else:
                     attempts += 1
                     print(f"Password incorrect ({attempts}/3 attempts). Try again:")

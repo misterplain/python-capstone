@@ -1,8 +1,3 @@
 userId,username,password,isAdmin
-4773b863,test,test,True
-5459184a,testtt,test,True
-90bd8f2f,dlkfjsdf,werisdf,True
-8d3bcbcb,sdfsdf,345345,True
-6e8dc574,sdxcv,alkdsj,True
-db32e400,xcv,q34,True
-ae081d15,lkdsjnv,sdf,True
+5864f490,Admin,admin,True
+aa7eac16,customer,customer,False
